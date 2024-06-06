@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: colorinspo-app-deployment
+  labels:
+    app: colorinspo-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: colorinspo-app
+  template:
+    metadata:
+      labels:
+        app: colorinspo-app
+    spec:
+      containers:
+      - name: colorinspo-app
+        image: sirdominique/colorinspo-app:latest
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: my-registry-secret
